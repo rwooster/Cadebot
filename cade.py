@@ -26,11 +26,29 @@ class Cade(discord.Client):
     def on_message(self, message):
         if message.content.startswith('!hello'):
             self.send_message(message.channel, 'Hello ' + message.author.name)
-        if message.content.startswith('!source'):
+        elif message.content.startswith('!source'):
             self.send_message(message.channel, "Edit me at https://github.com/rwooster/Cadebot !!!")
+        elif message.content.startswith('!roll'):
+            self.send_message(message.channel, message.author.name + ' rolled a {0}!'.format(roll_dice(message.content)))
 
     def on_ready(self):
         print('Logged in as {0}'.format(self.user.name))
+
+def roll_dice(message):
+    # of the form "!roll 1d6"
+    words = message.split()
+    roll = words[1].split('d') 
+
+    random.seed()
+    total = 0
+    for i in range(vals[0]):
+        total += random.randint(1, int(val[1]))
+
+    return total
+
+        
+
+
 
 if __name__ == "__main__":
     cade = Cade()
