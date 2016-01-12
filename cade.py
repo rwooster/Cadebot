@@ -26,6 +26,8 @@ class Cade(discord.Client):
     def on_message(self, message):
         if message.content.startswith('!hello'):
             self.send_message(message.channel, 'Hello ' + message.author.name)
+        if message.content.startswith('!source'):
+            self.send_message(message.channel, "Edit me at https://github.com/rwooster/Cadebot !!!")
 
     def on_ready(self):
         print('Logged in as {0}'.format(self.user.name))
