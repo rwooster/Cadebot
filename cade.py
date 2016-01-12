@@ -4,8 +4,6 @@
 # On run, starts Cade connection him to discord
 
 import os
-import sys
-import random
 import discord
 
 import on_message as om
@@ -13,9 +11,10 @@ import on_message as om
 class Cade(discord.Client):
 
     function_mapping = {
-            "hello"  : om.print_hello,
-            "source" : om.print_source,
-            "roll"   : om.roll_dice,
+            "hello"   : om.print_hello,
+            "source"  : om.print_source,
+            "roll"    : om.roll_dice,
+            "contest" : om.roll_contest,
     }
 
     def __init__(self):
