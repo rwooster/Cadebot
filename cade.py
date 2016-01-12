@@ -2,6 +2,7 @@
 
 import os
 import sys
+import random
 import discord
 
 import daemon
@@ -29,7 +30,7 @@ class Cade(discord.Client):
         elif message.content.startswith('!source'):
             self.send_message(message.channel, "Edit me at https://github.com/rwooster/Cadebot !!!")
         elif message.content.startswith('!roll'):
-            self.send_message(message.channel, message.author.name + ' rolled a {0}!'.format(roll_dice(message.content)))
+            self.send_message(message.channel, message.author.name + ' rolled {0}!'.format(roll_dice(message.content)))
 
     def on_ready(self):
         print('Logged in as {0}'.format(self.user.name))
@@ -41,8 +42,8 @@ def roll_dice(message):
 
     random.seed()
     total = 0
-    for i in range(vals[0]):
-        total += random.randint(1, int(val[1]))
+    for i in range(int(roll[0])):
+        total += random.randint(1, int(roll[1]))
 
     return total
 
