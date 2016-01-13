@@ -10,16 +10,16 @@ def print_source(cade, message):
     cade.send_message(message.channel, "Edit me at https://github.com/rwooster/Cadebot !!!")
 
 def roll_dice(cade, message):
-    # of the form "!roll 1d6"
-    dice = message.content.split()[1]
+    # of the form "1d6"
+    dice = message.content
 
     cade.send_message(message.channel, 
                       message.author.name + 
                       ' rolled {0}!'.format(util.roll_dice(dice)))
 
 def roll_contest(cade, message):
-    # of the form "!contest 1d6"
-    dice = message.content.split()[1]
+    # of the form "1d6"
+    dice = message.content
 
     cade.send_message(message.channel, 
                       message.author.name + " started a contest of " + dice)
