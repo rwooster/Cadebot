@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # Contains the Cade Client
-# On run, starts Cade connecting him to discord
+# On run starts Cade, connecting him to discord
 
 import os
 import discord
