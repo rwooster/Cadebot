@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # Contains the Cade Client
-# On run, starts Cade connection him to discord
+# On run, starts Cade connecting him to discord
 
 import os
 import discord
@@ -33,7 +33,7 @@ class Cade(discord.Client):
     def on_message(self, message):
         if message.content.startswith('!'):
             command, rest = message.content.split(" ", 1)
-            message.content = rest #Don't need the command in the content
+            message.content = rest 
             self.function_mapping[command[1:]](self, message)
 
     def on_ready(self):
