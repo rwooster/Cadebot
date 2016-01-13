@@ -1,4 +1,4 @@
-# Contains source for all the functions that are called when Cade hears a message
+# Contains source for all the functions that are called when Cade hears a message in a channel
 # Each function should take two arguments : a Cade object and a message object
 
 import random
@@ -47,6 +47,3 @@ def random_choice(cade, message):
     time.sleep(2)
     cade.send_message(message.channel,
                       "I pick " + random.choice(choices) + "!")
-
-
-        
