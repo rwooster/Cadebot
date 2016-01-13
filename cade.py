@@ -33,9 +33,9 @@ class Cade(discord.Client):
         
     def on_message(self, message):
         if message.content.startswith('!'):
-            command, rest = message.content.split(" ", 1)
-            message.content = rest 
-            self.function_mapping[command[1:]](self, message)
+            split = message.content.split(" ", 1)
+            message.content = split[1] if len(split) > 1 else message.content
+            self.function_mapping[split[0][1:]](self, message)
 
     def on_ready(self):
         print('Logged in as {0}'.format(self.user.name))
