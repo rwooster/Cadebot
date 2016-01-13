@@ -1,6 +1,9 @@
 # Contains source for all the functions that are called when Cade hears a message
 # Each function should take two arguments : a Cade object and a message object
 
+import random
+import time
+
 import util
 
 def print_hello(cade, message):
@@ -31,8 +34,19 @@ def roll_contest(cade, message):
         roll = util.roll_dice(dice)
         rolls.append((user, roll))
         cade.send_message(message.channel, user.name + " rolled a " + str(roll))
+        time.sleep(1)
 
     winner = max(rolls, key=lambda x: x[1])
     cade.send_message(message.channel, 
                       "The winner is " + winner[0].name + "!")
+
+def random_choice(cade, message):
+    choices = message.content.split(" ")
+
+    cade.send_typing(message.channel)
+    time.sleep(2)
+    cade.send_message(message.channel,
+                      "I pick " + random.choice(choices) + "!")
+
+
         

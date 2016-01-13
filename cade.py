@@ -15,6 +15,7 @@ class Cade(discord.Client):
             "source"  : om.print_source,
             "roll"    : om.roll_dice,
             "contest" : om.roll_contest,
+            "choose"  : om.random_choice,
     }
 
     def __init__(self):
