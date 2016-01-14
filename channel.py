@@ -48,3 +48,15 @@ def random_choice(cade, message):
     time.sleep(2)
     cade.send_message(message.channel,
                       "I pick " + random.choice(choices) + "!")
+
+def vote(cade, message):
+    if message.channel in cade.polls: 
+        poll = cade.polls[message.channel]
+
+        if message.content.isdigit() and int(message.content) < len(poll.choices):
+            poll.responses.append(message.content)
+
+def endpoll(cade, message):
+    if message.channel in cade.polls:
+        poll = cade.polls[message.channel]
+        poll.announce_winner()

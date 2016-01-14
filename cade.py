@@ -18,11 +18,13 @@ class Cade(discord.Client):
             "roll"    : ch.roll_dice,
             "contest" : ch.roll_contest,
             "choose"  : ch.random_choice,
+            "vote"    : ch.vote,
+            "endpoll" : ch.endpoll
     }
 
     # Functions that are executed over PM
     private_mapping = {
-            "poll" : pm.Poll,
+            "poll" : pm.start_poll,
     }
 
     def __init__(self):
@@ -31,6 +33,9 @@ class Cade(discord.Client):
         # Member variable inits
         self.__expect_message = None
         self.__expect_callback = None
+
+        # Map Channel : Poll to ensure only 1 poll per channel at a time
+        self.polls = {}
 
         # get account info
         self.email = os.environ['DISCORD_CADE_EMAIL']
