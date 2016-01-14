@@ -10,7 +10,8 @@ def print_hello(cade, message):
     cade.send_message(message.channel, 'Hello ' + message.author.name)
 
 def print_source(cade, message):
-    cade.send_message(message.channel, "Edit me at https://github.com/rwooster/Cadebot !!!")
+    cade.send_message(message.channel, 
+                      "Edit me at https://github.com/rwooster/Cadebot !!!")
 
 def roll_dice(cade, message):
     # of the form "1d6"
