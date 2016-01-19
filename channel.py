@@ -52,11 +52,9 @@ def random_choice(cade, message):
 def vote(cade, message):
     if message.channel in cade.polls: 
         poll = cade.polls[message.channel]
-
-        if message.content.isdigit() and int(message.content) < len(poll.choices):
-            poll.responses.append(message.content)
+        poll.vote(message)
 
 def endpoll(cade, message):
     if message.channel in cade.polls:
         poll = cade.polls[message.channel]
-        poll.announce_winner()
+        poll.announce_winner(message.author)

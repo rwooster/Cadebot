@@ -13,6 +13,7 @@ class Poll(object):
         self.question = None
         self.choices = []
         self.responses = []
+        self.responders = []
         self.poll_author = None
         self.client = cade
 
@@ -64,7 +65,8 @@ class Poll(object):
         self.question = message.content
 
         self.client.send_message(message.channel, 
-                "What are the choices? Write your choices all in one message, with each choice in double quotes.")
+                "What are the choices? Write your choices all in one message, with each choice in double quotes.\
+ The first listed choices will have priority in ties.")
 
         self.client.expect_message(message.author, self.set_choices)
 
@@ -86,19 +88,37 @@ class Poll(object):
         self.client.polls[self.channel] = self
 
         self.client.send_message(self.channel, "{0} has started a poll!".format(self.poll_author))
+        self.client.send_message(self.channel, "Vote with: !vote vote1, vote2, vote3")
+        self.client.send_message(self.channel, "Remember, you can only vote once!")
         self.client.send_message(self.channel, "**" + self.question + "**")
 
         for counter, choice in enumerate(self.choices):
             self.client.send_message(self.channel, "{0}) {1}".format(counter, choice))
 
-    def announce_winner(self):
+    def announce_winner(self, author):
+        if self.poll_author != author:
+            return
+
         if len(self.responses) < 0:
             self.client.send_message("** No winner **")
         else:
+            for count, choice in enumerate(self.choices):
+                self.client.send_message(self.channel, "{0} votes for {1}!".format(self.responses.count(count), choice))
+
             winner = max(set(self.responses), key=self.responses.count)
             self.client.send_message(self.channel, 
                                      "The winning choice is:** {0}! **".format(self.choices[int(winner)]))
 
+
         del self.client.polls[self.channel]
+
+    def vote(self, message):
+        if message.author not in self.responders:
+            answers = [int(x.strip()) for x in message.content.split(',')] 
+            answers_valid = [x for x in answers if x < len(self.choices)]
+            answers_no_dup = set(answers_valid)
+
+            self.responses.extend(answers_no_dup)
+            self.responders.append(message.author)
 
 
