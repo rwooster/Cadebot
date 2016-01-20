@@ -14,6 +14,6 @@ Need the following dependencies (pip install):
 	- discord.py
 	- PyGithub
 
-You need to have two environmental variables set: DISCORD_CADE_EMAIL, which has the email of the discord account the bot will use and DISCORD_CADE_PASSWORD which has the account's password. 
+You need to have a config file filled out as per the sample.config given (currently renamed cade.config)
 
 Once all of this is setup, you should be able to run ./cade.py and the bot will be running. As of now, the bot has to be added to each of the servers you want by logging into the bot account and adding it manually.
