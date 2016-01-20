@@ -5,6 +5,7 @@
 
 import os
 import discord
+from github import Github
 
 import channel as ch
 import private_message as pm
@@ -25,6 +26,7 @@ class Cade(discord.Client):
     # Functions that are executed over PM
     private_mapping = {
             "poll" : pm.start_poll,
+            "feature" : pm.request_feature
     }
 
     def __init__(self):
@@ -36,6 +38,9 @@ class Cade(discord.Client):
 
         # Map Channel : Poll to ensure only 1 poll per channel at a time
         self.polls = {}
+
+        # Connect to github
+        self.github = Github(os.environ['GITHUB_EMAIL'], os.environ['GITHUB_PASSWORD'])
 
         # get account info
         self.email = os.environ['DISCORD_CADE_EMAIL']
