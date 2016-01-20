@@ -8,7 +8,7 @@ def start_poll(cade, message):
     obj = poll.Poll(cade, message)
 
 def request_feature(cade, message):
-    import pdb; pdb.set_trace()
     repo = cade.github.get_repo("rwooster/Cadebot")
-    repo.create_issue(title="FR: {0}".format(message.content))
+    repo.create_issue(title="FR: {0}".format(message.content),
+            body="Requested by: {0}".format(message.author.name))
 
