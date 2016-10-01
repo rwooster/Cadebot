@@ -17,3 +17,5 @@ Need the following dependencies (pip install):
 You need to have a config file filled out as per the sample.config given (currently renamed cade.config)
 
 Once all of this is setup, you should be able to run ./cade.py and the bot will be running. As of now, the bot has to be added to each of the servers you want by logging into the bot account and adding it manually.
+
+NOTE: No longer works due to breaking changes in discord.py
